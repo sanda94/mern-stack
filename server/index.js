@@ -7,7 +7,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://animalcaremean:SOfS1nhjsKBZBD1D@cluster0.g0wz27q.mongodb.net/", {
+mongoose.connect("mongodb://localhost:27017", 
+{
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
