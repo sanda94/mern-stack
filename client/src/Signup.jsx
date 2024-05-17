@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Signup() {
@@ -8,6 +8,8 @@ function Signup() {
     email: '',
     password: ''
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,9 +22,10 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
-    axios.post('YOUR_API_ENDPOINT_HERE', formData)
+    axios.post('http://localhost:3300/register', formData)
       .then(result => {
         console.log(result.data); // Handle success response
+        navigate('/login'); // Correctly navigate to login page
       })
       .catch(err => {
         console.error(err); // Handle error
@@ -89,4 +92,3 @@ function Signup() {
 }
 
 export default Signup;
-``

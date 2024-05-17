@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,12 +21,23 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
-    axios.post('YOUR_LOGIN_API_ENDPOINT_HERE', formData)
+    axios.post('http://localhost:3300/register', formData)
       .then(result => {
         console.log(result.data); // Handle success response
+
+        // Simulate checking user details here, instead of using EmployeeModel.findOne which should be on the server-side
+        axios.post('http://localhost:3300/login', formData)
+          .then(userResult => {
+            console.log(userResult.data); // Handle success response for login
+            navigate('/dashboard'); // Navigate to the dashboard or another page after successful login
+          })
+          .catch(err => {
+            console.error(err); // Handle error for login
+          });
+
       })
       .catch(err => {
-        console.error(err); // Handle error
+        console.error(err); // Handle error for registration
       });
   };
 
