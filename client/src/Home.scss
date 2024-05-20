@@ -1,0 +1,48 @@
+/* Home.scss */
+.sidebar {
+    transition: width 0.3s;
+    width: 250px; /* Full width when open */
+  }
+  
+  .sidebar.closed {
+    width: 0; /* Collapsed width */
+    overflow: hidden;
+  }
+  
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: #5c35eb;
+  }
+  
+  .sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+  }
+  
+  .sidebar .nav-link.active {
+    color: #007bff;
+  }
+  
+  .sidebar .nav-link:hover .feather,
+  .sidebar .nav-link.active .feather {
+    color: inherit;
+  }
+  
+  .main.with-sidebar {
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+  }
+  
+  .main.without-sidebar {
+    margin-left: 0;
+    transition: margin-left 0.3s;
+  }
+  /* Home.scss */
+
+.nav-link {
+    color: white; /* Set default text color */
+  }
+  
+  .nav-link:hover {
+    color: #1da3b8; /* Change text color on hover */
+  }

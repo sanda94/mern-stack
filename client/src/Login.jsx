@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -20,31 +19,16 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
-    axios.post('http://localhost:3300/register', formData)
-      .then(result => {
-        console.log(result.data); // Handle success response
-
-        // Simulate checking user details here, instead of using EmployeeModel.findOne which should be on the server-side
-        axios.post('http://localhost:3300/login', formData)
-          .then(userResult => {
-            console.log(userResult.data); // Handle success response for login
-            navigate('/dashboard'); // Navigate to the dashboard or another page after successful login
-          })
-          .catch(err => {
-            console.error(err); // Handle error for login
-          });
-
-      })
-      .catch(err => {
-        console.error(err); // Handle error for registration
-      });
+    console.log('Login Data:', formData);
+    // You can further process the form data here, like sending it to a server
+    // If login is successful, navigate to home page
+    navigate('/');
   };
 
   return (
     <div className='d-flex justify-content-center align-items-center bg-secondary vh-100'>
-      <div className='bg-white p-3 rounded w-75'>
-        <h2 className="text-center">Login</h2>
+      <div className='bg-white p-3 rounded w-25'>
+        <h2 className='text-center mb-4'>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className='mb-3'>
             <label htmlFor='email'>
@@ -74,9 +58,7 @@ function Login() {
               className='form-control rounded-0'
             />
           </div>
-          <div className='text-center'>
-            <button type='submit' className='btn btn-primary'>Login</button>
-          </div>
+          <button type='submit' className='btn btn-primary w-100'>Login</button>
           <p className='mt-3 text-center'>
             Don't have an account? <Link to='/register'>Sign Up</Link>
           </p>
